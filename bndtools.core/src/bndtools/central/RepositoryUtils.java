@@ -63,10 +63,23 @@ public class RepositoryUtils {
         else {
             StringBuilder builder = new StringBuilder();
 
-            builder.append(bundleVersion.getVersion().getMajor());
-            builder.append('.').append(bundleVersion.getVersion().getMinor());
-            if (phase != DependencyPhase.Build)
-                builder.append('.').append(bundleVersion.getVersion().getMicro());
+            int major = bundleVersion.getVersion().getMajor();
+            int minor = bundleVersion.getVersion().getMinor();
+            int micro = bundleVersion.getVersion().getMicro();
+
+            builder.append("[");
+
+            builder.append(major);
+            builder.append('.').append(minor);
+            builder.append('.').append(micro);
+
+            builder.append(",");
+
+            builder.append(major);
+            builder.append('.').append(minor);
+            builder.append('.').append(micro);
+
+            builder.append("]");
 
             attribs.put(Constants.VERSION_ATTRIBUTE, builder.toString());
         }
